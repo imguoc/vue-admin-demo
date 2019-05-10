@@ -1,0 +1,207 @@
+/* Font */
+@font-face {
+    font-family: 'webfont';
+    src: url('//at.alicdn.com/t/webfont_jggn6sbuvfo.eot'); /* IE9*/
+    src: url('//at.alicdn.com/t/webfont_jggn6sbuvfo.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('//at.alicdn.com/t/webfont_jggn6sbuvfo.woff') format('woff'), /* chrome、firefox */
+    url('//at.alicdn.com/t/webfont_jggn6sbuvfo.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('//at.alicdn.com/t/webfont_jggn6sbuvfo.svg#NotoSansHans-DemiLight') format('svg'); /* iOS 4.1- */
+  }
+/* Common Css */
+html, body, #app {
+    height: 100%;
+    font-family: 'webfont';
+}
+* {
+    box-sizing: border-box;
+}
+ul, ol {
+    list-style: none;
+}
+
+/* Flex Layout */
+.flex-box {
+    display: flex;
+}
+.flex-row {
+    flex-direction: row;
+}
+.flex-column {
+    flex-direction: column;
+}
+.flex-item {
+    flex: 1;
+}
+.flex-center {
+    align-items: center;
+    justify-content: center;
+}
+
+/* Business Css */
+.layout-content {
+    height: 100%;
+    .delay {
+        animation-delay: 500ms;
+    }
+    .layout-side-menu {
+        // 侧边展开的过渡
+        transition: 0.5s;
+        height: 100%;
+        background: #333;
+        .favicon {
+            padding: 10px 0;
+            background: #444;
+            border-bottom: 2px solid #555;
+            .img {
+                overflow: hidden;
+                margin: 10px 0;
+                border-radius: 100%;
+                border: 2px solid #ccc;
+                // 头像旋转的过渡
+                transition: 0.5s;
+                img {
+                    width: 100%;
+                }
+            }
+            .img:hover {
+                transform: rotate(360deg);
+            }
+            .name {
+                font-size: 16px;
+                color: #fff;
+            }
+        }
+        ul {
+            margin: 0;
+            padding: 0;
+            li {
+                a {
+                    text-decoration: none;
+                    font-size: 18px;
+                    color: #fff;
+                    padding: 20px 10px;
+                    // hover过渡
+                    transition: 0.5s;
+                    .icon {
+                        // icon缩放过渡
+                        transition: 0.5s;
+                    }
+                    .arrow {
+                        display: none;
+                    }
+                    span {
+                        margin-left: 10px;
+                    }
+                }
+                a.router-link-exact-active {
+                    color: #fff;
+                    background: #222;
+                    .arrow {
+                        display: block;
+                    }
+                }
+                a:hover {
+                    background: #444;
+                }
+
+            }
+        }
+        .bottom-btn {
+            background: #444;
+            border-top: 2px solid #555;
+            a {
+                cursor: pointer;
+                text-decoration: none;
+                font-size: 16px;
+                color: #fff;
+                padding: 20px 0;
+                span {
+                    margin-left: 10px;
+                }
+                i {
+                    font-size: 18px;
+                }
+            }
+            a:hover {
+                background: #222;
+            }
+            a.toggle:hover {
+                color: #2196F3;
+                i {
+                    font-weight: bold;
+                }
+            }
+            a.exit:hover {
+                color: #FF5722;
+                i {
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+    .layout-main {
+        overflow: hidden;
+        .layout-header {
+            background: #2196F3;
+            padding: 0 20px;
+            height: 60px;
+            .toggle-side {
+                cursor: pointer;
+                width: 40px;
+                height: 40px;
+                font-size: 30px;
+                color: #ccc;
+                margin: 10px;
+            }
+            .logo {
+                width: 160px;
+                font-size: 20px;
+                font-weight: bold;
+                color: #fff;
+            }
+            .el-menu {
+                background: transparent;
+                border-bottom: none;
+                padding: 0 20px;
+                .el-menu-item,
+                .el-submenu {
+                    height: 32px;
+                    line-height: 32px;
+                    color: #fff;
+                    border-bottom: none;
+                    margin: 14px auto;
+                    .el-submenu__title {
+                        height: 32px;
+                        line-height: 32px;
+                        color: #fff;
+                        border-bottom: none;
+                        .el-submenu__icon-arrow {
+                            color: #fff;
+                        }
+                    }
+                }
+                .el-menu-item.is-active,
+                .el-submenu.is-active {
+                    border-bottom: none;
+                    background: #2189dc;
+                    border-radius: 4px;
+                }
+                .el-menu-item:not(.is-disabled):focus {
+                    background: #2189dc;
+                }
+                .el-menu-item:not(.is-disabled):hover,
+                .el-submenu__title:not(.is-disabled):hover {
+                    background: #2189dc
+                }
+            }
+            .setting {
+
+            }
+        }
+        .layout-view {
+            overflow: hidden;
+            background: #f8f8f8;
+            padding: 20px;
+        }
+    }
+}

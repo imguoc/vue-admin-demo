@@ -1,0 +1,81 @@
+<template>
+    <div class="flex-box flex-column" :style="{'width': (isOpenSide ? 160 : 60) + 'px'}">
+        <div class="favicon flex-box flex-column flex-center">
+            <div class="img" :style="{'width': (isOpenSide ? 60 : 40) + 'px', 'height': (isOpenSide ? 60 : 40) + 'px'}">
+                <img src="@/assets/favicon.png" alt="">
+            </div>
+            <div v-if="isOpenSide" class="name animated fadeIn">
+                ADMIN
+            </div>
+        </div>
+        <ul class="flex-item">
+            <li v-for="(item, index) in list" :key="index">
+                <el-tooltip :content="item.name" placement="right" :disabled="isOpenSide">
+                    <router-link :to="item.path" class="flex-box flex-item flex-center">
+                        <i :class="item.icon" class="icon animated" :style="{'font-size': (isOpenSide ? 18 : 24) + 'px'}"></i>
+                        <template v-if="isOpenSide" class="animated fadeIn">
+                            <span class="flex-item animated fadeIn">{{ item.name }}</span>
+                            <i class="el-icon-arrow-right arrow animated fadeInLeft"></i>
+                        </template>
+                    </router-link>
+                </el-tooltip>
+            </li>
+        </ul>
+        <div class="bottom-btn">
+            <el-tooltip content="展开" placement="right" :disabled="isOpenSide">
+                <a class="toggle flex-box flex-item flex-center" @click="handleToggle">
+                    <i :class="isOpenSide ? 'el-icon-turn-off' : 'el-icon-open'" :style="{'font-size': (isOpenSide ? 18 : 20) + 'px'}"></i>
+                    <span v-if="isOpenSide" class="animated fadeIn">收起</span>
+                </a>
+            </el-tooltip>
+            <el-tooltip content="退出" placement="right" :disabled="isOpenSide">
+                <a class="exit flex-box flex-item flex-center">
+                    <i class="el-icon-switch-button" :style="{'font-size': (isOpenSide ? 18 : 24) + 'px'}"></i>
+                    <span v-if="isOpenSide" class="animated fadeIn">退出</span>
+                </a>
+            </el-tooltip>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+    name: 'SideMenu',
+
+    data () {
+        return {
+            isOpenSide: false,
+            list: [
+                {
+                    path: '/',
+                    name: 'Home',
+                    icon: 'el-icon-s-home'
+                },
+                {
+                    path: '/test',
+                    name: 'Test',
+                    icon: 'el-icon-s-platform'
+                }
+            ]
+        }
+    },
+
+    computed: {
+
+    },
+
+    watch: {
+
+    },
+
+    methods: {
+        handleToggle () {
+            this.isOpenSide = !this.isOpenSide
+        }
+    }
+}
+</script>
+
+<style>
+
+</style>

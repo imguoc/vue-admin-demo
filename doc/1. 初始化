@@ -1,0 +1,33 @@
+
+**创建项目**
+
+```
+vue init webpack vue-admin-demo
+```
+
+根据选项回车，会自动安装依赖。没有安装的话在项目根目录下执行 `npm install`
+
+
+**替换`npm`源**
+
+```
+npm config set registry https://registry.npm.taobao.org
+// 验证
+npm config get registry
+```
+
+不推荐直接使用`cnpm`[淘宝 NPM 镜像](http://npm.taobao.org/)
+
+
+**运行**
+
+```
+npm run dev
+```
+
+
+**vuejs-templates**
+[Github仓库](https://github.com/vuejs-templates/webpack)
+[DOC](http://vuejs-templates.github.io/webpack/)
+
+

@@ -1,4 +1,4 @@
-import Home from '@/views/home'
+const Home = () => import('@/views/home')
 
 export default [
     {

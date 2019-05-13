@@ -22,7 +22,7 @@ Vue.use(ElementUI)
 Vue.use(components)
 
 /* eslint-disable no-new */
-new Vue({
+window.vm = new Vue({
     el: '#app',
     router,
     components: { App },

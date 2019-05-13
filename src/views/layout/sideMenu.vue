@@ -29,7 +29,7 @@
                 </a>
             </el-tooltip>
             <el-tooltip content="退出" placement="right" :disabled="isOpenSide">
-                <a class="exit flex-box flex-item flex-center">
+                <a class="exit flex-box flex-item flex-center" @click="handleExit">
                     <i class="el-icon-switch-button" :style="{'font-size': (isOpenSide ? 18 : 20) + 'px'}"></i>
                     <span v-if="isOpenSide" class="animated fadeIn">退出</span>
                 </a>
@@ -71,6 +71,20 @@ export default {
     methods: {
         handleToggle () {
             this.isOpenSide = !this.isOpenSide
+        },
+        handleExit () {
+            this.$confirm('退出登陆？', '提示', {
+                type: 'warning',
+                confirmButtonText: '确定',
+                cancelButtonText: '取消'
+            }).then(() => {
+                this.$message({
+                    type: 'success',
+                    message: '已退出登陆！'
+                })
+                localStorage.clear('TOKEN')
+                this.$router.push('/login')
+            }).catch(() => {})
         }
     }
 }

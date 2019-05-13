@@ -1,4 +1,4 @@
-import Test from '@/views/test'
+const Test = () => import('@/views/test')
 
 export default [
     {

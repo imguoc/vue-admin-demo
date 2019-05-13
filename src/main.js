@@ -10,8 +10,6 @@ import ElementUI from 'element-ui'
 import 'animate.css'
 // 引入 normalize.css
 import 'normalize.css'
-// css-flex-layout
-// import 'css-flex-layout'
 
 import 'element-ui/lib/theme-chalk/index.css'
 import '@/assets/css/common.scss'

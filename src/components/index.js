@@ -1,9 +1,9 @@
-import Header from './layout/header.vue'
-import SideMenu from './layout/sideMenu.vue'
+// import Header from './layout/header.vue'
+// import SideMenu from './layout/sideMenu.vue'
 
 const components = [
-    Header,
-    SideMenu
+    // Header,
+    // SideMenu
 ]
 
 export default function (Vue) {

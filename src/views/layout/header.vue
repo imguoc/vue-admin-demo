@@ -8,14 +8,22 @@
             <el-menu-item v-if="!(item['child'] && item['child'].length)" :index="item.index" :key="item.index">
                 {{ item.name }}
             </el-menu-item>
-            <el-submenu v-else :index="item.index" :key="item.index">
+            <el-submenu v-else :index="item.index" :key="item.index"  popper-class="header-menu-popup">
                 <template slot="title">{{ item.name }}</template>
                 <el-menu-item v-for="subitem in item.child" :index="subitem.index" :key="subitem.index">{{ subitem.name }}</el-menu-item>
             </el-submenu>
         </template>
     </el-menu>
     <div class="setting flex-box flex-center">
-        <i class="el-icon-setting"></i>
+        <el-dropdown size="medium">
+            <span class="el-dropdown-link">
+                <i class="el-icon-setting"></i> 设置
+            </span>
+            <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item>设置1</el-dropdown-item>
+                <el-dropdown-item>设置2</el-dropdown-item>
+            </el-dropdown-menu>
+        </el-dropdown>
     </div>
 </div>
 </template>
@@ -151,16 +159,5 @@ export default {
 </script>
 
 <style lang="scss">
-.el-menu--horizontal .el-menu--popup {
-    min-width: 120px;
-    .el-menu-item {
-        height: 30px;
-        line-height: 30px;
-    }
-    .el-menu-item.is-active,
-    .el-menu-item:hover {
-        color: #2196f3;
-        background: #afdcff;
-    }
-}
+
 </style>

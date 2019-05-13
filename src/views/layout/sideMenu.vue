@@ -1,7 +1,7 @@
 <template>
-    <div class="flex-box flex-column" :style="{'width': (isOpenSide ? 160 : 60) + 'px'}">
+    <div class="flex-box flex-column" :style="{'width': (isOpenSide ? 160 : 50) + 'px'}">
         <div class="favicon flex-box flex-column flex-center">
-            <div class="img" :style="{'width': (isOpenSide ? 60 : 40) + 'px', 'height': (isOpenSide ? 60 : 40) + 'px'}">
+            <div class="img" :style="{'width': (isOpenSide ? 60 : 34) + 'px', 'height': (isOpenSide ? 60 : 34) + 'px'}">
                 <img src="@/assets/favicon.png" alt="">
             </div>
             <div v-if="isOpenSide" class="name animated fadeIn">
@@ -24,13 +24,13 @@
         <div class="bottom-btn">
             <el-tooltip content="展开" placement="right" :disabled="isOpenSide">
                 <a class="toggle flex-box flex-item flex-center" @click="handleToggle">
-                    <i :class="isOpenSide ? 'el-icon-turn-off' : 'el-icon-open'" :style="{'font-size': (isOpenSide ? 18 : 20) + 'px'}"></i>
+                    <i :class="isOpenSide ? 'el-icon-open' : 'el-icon-turn-off'" :style="{'font-size': (isOpenSide ? 18 : 20) + 'px'}"></i>
                     <span v-if="isOpenSide" class="animated fadeIn">收起</span>
                 </a>
             </el-tooltip>
             <el-tooltip content="退出" placement="right" :disabled="isOpenSide">
                 <a class="exit flex-box flex-item flex-center">
-                    <i class="el-icon-switch-button" :style="{'font-size': (isOpenSide ? 18 : 24) + 'px'}"></i>
+                    <i class="el-icon-switch-button" :style="{'font-size': (isOpenSide ? 18 : 20) + 'px'}"></i>
                     <span v-if="isOpenSide" class="animated fadeIn">退出</span>
                 </a>
             </el-tooltip>

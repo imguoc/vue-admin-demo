@@ -13,8 +13,14 @@
 </template>
 
 <script>
+import Header from './views/layout/header.vue'
+import SideMenu from './views/layout/sideMenu.vue'
 export default {
-    name: 'App'
+    name: 'App',
+    components: {
+        Header,
+        SideMenu
+    }
 }
 </script>
 

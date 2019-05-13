@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "animate.css": "^3.7.0",
-    "css-flex-layout": "^1.0.0",
     "element-ui": "^2.8.2",
     "normalize.css": "^8.0.1",
     "vue": "^2.5.2",

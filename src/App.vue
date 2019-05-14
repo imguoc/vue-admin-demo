@@ -5,9 +5,11 @@
                 <SideMenu class="layout-side-menu"></SideMenu>
                 <div class="layout-main flex-box flex-column flex-item">
                     <Header class="layout-header"></Header>
-                    <transition enter-active-class="fadeInRight faster delay" leave-active-class="fadeOutLeft faster">
-                        <router-view class="animated layout-view flex-item" />
-                    </transition>
+                    <div class="layout-view flex-box flex-item flex-row" style="position: relative;">
+                        <transition enter-active-class="fadeInRight faster" leave-active-class="fadeOutLeft faster">
+                            <router-view class="animated layout-view-main" />
+                        </transition>
+                    </div>
                 </div>
             </template>
             <template v-else>

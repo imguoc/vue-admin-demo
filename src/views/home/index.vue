@@ -1,6 +1,6 @@
 <template>
     <div>
-        Home Page
+        welcome!
     </div>
 </template>
 

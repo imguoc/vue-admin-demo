@@ -39,12 +39,12 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex'
 export default {
     name: 'SideMenu',
 
     data () {
         return {
-            isOpenSide: false,
             list: [
                 {
                     path: '/',
@@ -61,7 +61,9 @@ export default {
     },
 
     computed: {
-
+        ...mapState('layout', [
+            'isOpenSide'
+        ])
     },
 
     watch: {
@@ -69,8 +71,12 @@ export default {
     },
 
     methods: {
+        ...mapMutations('layout', [
+            'sync_isOpenSide'
+        ]),
         handleToggle () {
-            this.isOpenSide = !this.isOpenSide
+            localStorage.setItem('isOpenSide', !this.isOpenSide)
+            this.sync_isOpenSide(!this.isOpenSide)
         },
         handleExit () {
             this.$confirm('退出登陆？', '提示', {

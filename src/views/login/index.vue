@@ -1,8 +1,26 @@
 <template>
     <div class="login">
+        <vue-particles
+            color="#666"
+            :particleOpacity="0.6"
+            :particlesNumber="80"
+            shapeType="circle"
+            :particleSize="4"
+            linesColor="#666"
+            :linesWidth="1"
+            :lineLinked="true"
+            :lineOpacity="0.6"
+            :linesDistance="150"
+            :moveSpeed="3"
+            :hoverEffect="true"
+            hoverMode="grab"
+            :clickEffect="true"
+            clickMode="push"
+        >
+        </vue-particles>
         <div class="login-box animated bounceInDown delay flex-box flex-column">
             <div class="login-head">
-                User Login
+                User 管理系统
             </div>
             <el-form :model="form" :rules="formRules" ref="form" size="medium" @submit.prevent class="flex-box flex-center flex-column">
                 <el-form-item label="" prop="name">
@@ -93,15 +111,32 @@ export default {
 </script>
 
 <style scoped lang="scss">
-// 免费图片网站：https://picjumbo.com/
+#particles-js {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #444;
+    background: url('../../assets/login-bg.jpg') no-repeat center/cover;
+    filter: blur(3px) brightness(80%);
+}
 .login {
-    background: url('https://picjumbo.com/wp-content/uploads/working-on-macbook-and-iphone-in-a-bed-2210x1473.jpg') no-repeat center/cover;
+    // 免费图片网站：https://picjumbo.com/
+    // background: url('../../assets/login-bg.jpg') no-repeat center/cover;
     .login-box {
         width: 460px;
+        height: 340px;
         background: #fff;
-        margin: 80px auto;
+        // margin: 80px auto;
         border-radius: 10px;
         overflow: hidden;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
         .login-head {
             font-size: 26px;
             color: #fff;

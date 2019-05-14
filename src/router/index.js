@@ -18,9 +18,8 @@ const router = new Router({
 
 // 全局导航守卫
 let whiteList = ['/login', '/404']
-let TOKEN = localStorage.getItem('TOKEN')
-console.log(TOKEN)
 router.beforeEach((to, from, next) => {
+    let TOKEN = localStorage.getItem('TOKEN')
     if (whiteList.includes(to.path)) {
         next()
     } else if (!TOKEN) {

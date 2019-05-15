@@ -1,5 +1,5 @@
 <template>
-    <div class="flex-box flex-column" :style="{'width': (isOpenSide ? 160 : 50) + 'px'}">
+    <div class="flex-box flex-column" :style="{'width': (isOpenSide ? 200 : 50) + 'px'}">
         <div class="favicon flex-box flex-column flex-center">
             <div class="img" :style="{'width': (isOpenSide ? 60 : 34) + 'px', 'height': (isOpenSide ? 60 : 34) + 'px'}">
                 <img src="@/assets/favicon.png" alt="">

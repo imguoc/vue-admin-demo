@@ -43,22 +43,19 @@ ul, ol {
 /* Business Css */
 .layout-content {
     height: 100%;
-    .delay {
-        animation-delay: 800ms;
-    }
     .layout-side-menu {
         // 侧边展开的过渡
-        transition: 0.5s;
+        transition: 0.2s;
         height: 100%;
-        background: #333;
+        background: #222;
         .favicon {
-            padding: 10px 0;
-            background: #444;
+            padding: 25px 0;
+            background: #222;
             border-bottom: 2px solid #555;
             .img {
                 overflow: hidden;
                 margin: 10px 0;
-                border-radius: 100%;
+                border-radius: 3px;
                 border: 2px solid #ccc;
                 // 头像旋转的过渡
                 transition: 0.5s;
@@ -79,10 +76,11 @@ ul, ol {
             padding: 0;
             li {
                 a {
+                    height: 46px;
                     text-decoration: none;
                     font-size: 18px;
                     color: #fff;
-                    padding: 15px 10px;
+                    padding: 0 10px;
                     // hover过渡
                     transition: 0.5s;
                     .icon {
@@ -93,40 +91,42 @@ ul, ol {
                         display: none;
                     }
                     span {
-                        margin-left: 10px;
+                        margin-left: 5px;
                     }
                 }
                 a.router-link-exact-active {
                     color: #fff;
-                    background: #2196f3;
+                    background: #444;
                     .arrow {
                         display: block;
                     }
                 }
                 a:hover {
-                    background: #427dad;
+                    background: #333;
                 }
 
             }
         }
         .bottom-btn {
-            background: #444;
+            background: #222;
             border-top: 2px solid #555;
             a {
-                height: 50px;
+                height: 46px;
                 text-decoration: none;
                 font-size: 16px;
                 color: #fff;
+                // hover过渡
+                transition: 0.5s;
                 cursor: pointer;
                 span {
-                    margin-left: 10px;
+                    margin-left: 5px;
                 }
                 i {
                     font-size: 18px;
                 }
             }
             a:hover {
-                background: #222;
+                background: #333;
             }
             a.toggle:hover {
                 color: #2196F3;

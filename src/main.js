@@ -6,7 +6,8 @@ import store from './store'
 import router from './router'
 import ElementUI from 'element-ui'
 import VueParticles from 'vue-particles'
-import components from '@/components'
+import Components from '@/components'
+import Plugins from '@/plugins'
 
 // 引入 animate.css
 import 'animate.css'
@@ -20,7 +21,8 @@ import '@/assets/css/common.scss'
 Vue.config.productionTip = false
 
 Vue.use(ElementUI)
-Vue.use(components)
+Vue.use(Components)
+Vue.use(Plugins)
 Vue.use(VueParticles)
 
 /* eslint-disable no-new */

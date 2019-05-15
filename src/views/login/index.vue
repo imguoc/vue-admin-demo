@@ -18,11 +18,11 @@
             clickMode="push"
         >
         </vue-particles>
-        <div class="login-box animated bounceInDown delay flex-box flex-column">
+        <div class="login-box animated bounceInDown flex-box flex-column">
             <div class="login-head">
                 User 管理系统
             </div>
-            <el-form :model="form" :rules="formRules" ref="form" size="medium" @submit.prevent class="flex-box flex-center flex-column">
+            <el-form :model="form" :rules="formRules" ref="form" size="medium" @submit.prevent @keyup.enter.native="submit" class="flex-box flex-center flex-column">
                 <el-form-item label="" prop="name">
                     <el-input v-model="form.name" suffix-icon="el-icon-user" placeholder="输入用户名"></el-input>
                 </el-form-item>

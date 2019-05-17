@@ -6,11 +6,15 @@
     <el-menu class="flex-item" :default-active="activeIndex" mode="horizontal" @select="handleSelect">
         <template v-for="item in list">
             <el-menu-item v-if="!(item['child'] && item['child'].length)" :index="item.index" :key="item.index">
-                {{ item.name }}
+                <!-- <router-link :to="item.name">{{ item.name }}</router-link> -->
+                <a href="" @click.prevent="handleClick(item)">{{ item.name }}</a>
             </el-menu-item>
             <el-submenu v-else :index="item.index" :key="item.index"  popper-class="header-menu-popup">
                 <template slot="title">{{ item.name }}</template>
-                <el-menu-item v-for="subitem in item.child" :index="subitem.index" :key="subitem.index">{{ subitem.name }}</el-menu-item>
+                <el-menu-item v-for="subitem in item.child" :index="subitem.index" :key="subitem.index">
+                    <!-- <router-link :to="item.name">{{ subitem.name }}</router-link> -->
+                    <a href="" @click.prevent="handleClick(subitem)">{{ subitem.name }}</a>
+                </el-menu-item>
             </el-submenu>
         </template>
     </el-menu>
@@ -38,29 +42,9 @@ export default {
             list: [
                 {
                     name: 'item1',
+                    path: '/item1',
                     index: '1',
-                    child: [
-                        {
-                            name: 'item1-1',
-                            index: '1-1'
-                        },
-                        {
-                            name: 'item1-2',
-                            index: '1-2'
-                        },
-                        {
-                            name: 'item1-3',
-                            index: '1-3'
-                        },
-                        {
-                            name: 'item1-4',
-                            index: '1-4'
-                        },
-                        {
-                            name: 'item1-5',
-                            index: '1-5'
-                        }
-                    ]
+                    child: []
                 },
                 {
                     name: 'item2',
@@ -68,11 +52,15 @@ export default {
                     child: [
                         {
                             name: 'item2-1',
-                            index: '2-1'
+                            path: '/item2-1',
+                            index: '2-1',
+                            child: []
                         },
                         {
                             name: 'item2-2',
-                            index: '2-2'
+                            path: '/item2-2',
+                            index: '2-2',
+                            child: []
                         }
                     ]
                 },
@@ -82,15 +70,21 @@ export default {
                     child: [
                         {
                             name: 'item3-1',
-                            index: '3-1'
+                            path: '/item3-1',
+                            index: '3-1',
+                            child: []
                         },
                         {
                             name: 'item3-2',
-                            index: '3-2'
+                            path: '/item3-2',
+                            index: '3-2',
+                            child: []
                         },
                         {
                             name: 'item3-3',
-                            index: '3-3'
+                            path: '/item3-3',
+                            index: '3-3',
+                            child: []
                         }
                     ]
                 },
@@ -100,23 +94,33 @@ export default {
                     child: [
                         {
                             name: 'item4-1',
-                            index: '4-1'
+                            path: '/item4-1',
+                            index: '4-1',
+                            child: []
                         },
                         {
                             name: 'item4-2',
-                            index: '4-2'
+                            path: '/item4-2',
+                            index: '4-2',
+                            child: []
                         },
                         {
                             name: 'item4-3',
-                            index: '4-3'
+                            path: '/item4-3',
+                            index: '4-3',
+                            child: []
                         },
                         {
                             name: 'item4-4',
-                            index: '4-4'
+                            path: '/item4-4',
+                            index: '4-4',
+                            child: []
                         },
                         {
                             name: 'item4-5',
-                            index: '4-5'
+                            path: '/item4-5',
+                            index: '4-5',
+                            child: []
                         }
                     ]
                 },
@@ -126,23 +130,33 @@ export default {
                     child: [
                         {
                             name: 'item5-1',
-                            index: '5-1'
+                            path: '/item5-1',
+                            index: '5-1',
+                            child: []
                         },
                         {
                             name: 'item5-2',
-                            index: '5-2'
+                            path: '/item5-2',
+                            index: '5-2',
+                            child: []
                         },
                         {
                             name: 'item5-3',
-                            index: '5-3'
+                            path: '/item5-3',
+                            index: '5-3',
+                            child: []
                         },
                         {
                             name: 'item5-4',
-                            index: '5-4'
+                            path: '/item5-4',
+                            index: '5-4',
+                            child: []
                         },
                         {
                             name: 'item5-5',
-                            index: '5-5'
+                            path: '/item5-5',
+                            index: '5-5',
+                            child: []
                         }
                     ]
                 }
@@ -153,6 +167,14 @@ export default {
     methods: {
         handleSelect () {
 
+        },
+        handleClick (item) {
+            this.$addRouter.add({
+                path: item.path,
+                key: item.index,
+                compName: 'custom',
+                props: item
+            })
         }
     }
 }

@@ -7,7 +7,9 @@
                     <Header class="layout-header"></Header>
                     <div class="layout-view flex-box flex-item flex-row" style="position: relative;">
                         <transition enter-active-class="fadeInRight faster" leave-active-class="fadeOutLeft faster">
-                            <router-view class="animated layout-view-main" />
+                            <keep-alive>
+                                <router-view class="animated layout-view-main" />
+                            </keep-alive>
                         </transition>
                     </div>
                 </div>

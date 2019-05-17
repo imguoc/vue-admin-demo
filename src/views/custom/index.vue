@@ -1,12 +1,12 @@
 <template>
     <div>
-        Test Page
+        hello {{ this.$attrs.name }}
     </div>
 </template>
 
 <script>
 export default {
-    name: 'Test'
+    name: 'custom'
 }
 </script>
 

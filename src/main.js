@@ -4,26 +4,13 @@ import Vue from 'vue'
 import App from './App'
 import store from './store'
 import router from './router'
-import ElementUI from 'element-ui'
-import VueParticles from 'vue-particles'
-import Components from '@/components'
 import Plugins from '@/plugins'
-
-// 引入 animate.css
-import 'animate.css'
-// 引入 normalize.css
-import 'normalize.css'
-// 引入 element-ui css
-import 'element-ui/lib/theme-chalk/index.css'
-// 引入 common.scss
-import '@/assets/css/common.scss'
 
 Vue.config.productionTip = false
 
-Vue.use(ElementUI)
-Vue.use(Components)
-Vue.use(Plugins)
-Vue.use(VueParticles)
+Vue.use(Plugins, {
+    router
+})
 
 /* eslint-disable no-new */
 window.vm = new Vue({

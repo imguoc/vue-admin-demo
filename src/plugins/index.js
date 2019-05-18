@@ -11,6 +11,7 @@ import ElementUI from 'element-ui'
 import VueParticles from 'vue-particles'
 import Components from '@/components'
 import _ from 'lodash'
+import storage from './storage'
 import addRouter from './addRouter'
 
 export default function (Vue, options) {
@@ -19,5 +20,6 @@ export default function (Vue, options) {
     Vue.use(VueParticles)
     Vue.use(addRouter, options)
     Vue._ = Vue.prototype._ = _
+    Vue.storage = Vue.prototype.$storage = storage
     Vue.addRouter = Vue.prototype.$addRouter = addRouter
 }

@@ -1,2 +1,0 @@
-webpackJsonp([2],{"GsM/":function(e,n){},KR8f:function(e,n,t){"use strict";Object.defineProperty(n,"__esModule",{value:!0});var r={render:function(){var e=this.$createElement;return(this._self._c||e)("div",[this._v("\n    welcome!\n")])},staticRenderFns:[]};var s=t("VU/8")({name:"Home"},r,!1,function(e){t("GsM/")},"data-v-42edd49f",null);n.default=s.exports}});
-//# sourceMappingURL=2.b48d343b9b40efa912e6.js.map

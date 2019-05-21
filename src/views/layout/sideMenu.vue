@@ -11,7 +11,7 @@
         <ul class="flex-item">
             <li v-for="(item, index) in list" :key="index">
                 <el-tooltip :content="item.name" placement="right" :disabled="isOpenSide">
-                    <router-link :to="item.path" class="flex-box flex-item flex-center">
+                    <router-link :to="item.path" @click.native="handleClick(item)" class="flex-box flex-item flex-center">
                         <i :class="item.icon" class="icon animated" :style="{'font-size': (isOpenSide ? 18 : 24) + 'px'}"></i>
                         <template v-if="isOpenSide" class="animated fadeIn">
                             <span class="flex-item animated fadeIn">{{ item.name }}</span>
@@ -74,6 +74,12 @@ export default {
         ...mapMutations('layout', [
             'sync_isOpenSide'
         ]),
+        ...mapMutations('tab', [
+            'sync_currentTab'
+        ]),
+        handleClick (item) {
+            this.sync_currentTab(item.name)
+        },
         handleToggle () {
             localStorage.setItem('isOpenSide', !this.isOpenSide)
             this.sync_isOpenSide(!this.isOpenSide)

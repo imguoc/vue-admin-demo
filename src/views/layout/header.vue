@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex'
 export default {
     name: 'Header',
 
@@ -164,7 +165,17 @@ export default {
         }
     },
 
+    computed: {
+        ...mapState('tab', [
+            'tabList'
+        ])
+    },
+
     methods: {
+        ...mapMutations('tab', [
+            'sync_currentTab',
+            'sync_tabList'
+        ]),
         handleSelect () {
 
         },
@@ -175,6 +186,17 @@ export default {
                 compName: 'custom',
                 props: item
             })
+            let storeTab = this.$storage.get('tabList') || []
+            if (!storeTab.find(v => v.path === item.path)) {
+                storeTab.push({
+                    title: item.name,
+                    name: item.name,
+                    path: item.path
+                })
+                this.sync_tabList(storeTab)
+                this.$storage.set('tabList', this.tabList)
+            }
+            this.sync_currentTab(item.name)
         }
     }
 }

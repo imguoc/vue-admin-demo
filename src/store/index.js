@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 // module
 import layout from './layout'
+import tab from './tab'
 
 Vue.use(Vuex)
 
@@ -18,7 +19,8 @@ const actions = {
 
 }
 const modules = {
-    layout
+    layout,
+    tab
 }
 
 const store = new Vuex.Store({

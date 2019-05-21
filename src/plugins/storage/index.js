@@ -4,10 +4,9 @@ const storage = {
     },
     set (name, value) {
         localStorage.setItem(name, JSON.stringify(value))
-        return this.get(name)
     },
     clear (name) {
-        return name ? localStorage.removeItem(name) : localStorage.clear()
+        name ? localStorage.removeItem(name) : localStorage.clear()
     }
 }
 

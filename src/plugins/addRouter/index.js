@@ -1,28 +1,22 @@
-import _ from 'lodash'
 import comps from './components'
 
+let _Vue
+let STORE_NAME = 'addRouter'
+
 const addRouter = {
-    storage: {
-        get (key) {
-            return JSON.parse(localStorage.getItem(key))
-        },
-        set (key, value) {
-            return localStorage.setItem(key, JSON.stringify(value))
-        }
-    },
     init (route = null) {
-        let storeRouter = this.storage.get('addRouter') || []
+        let storeRouter = _Vue.storage.get(STORE_NAME) || []
         if (route) {
             if (!storeRouter.find(comp => comp.path === route.path)) storeRouter.push(route)
         } else {
             storeRouter.map(rt => {
-                let component = _.cloneDeep(comps[rt.compName])
+                let component = _Vue._.cloneDeep(comps[rt.compName])
                 component.name = rt.component.name
                 rt.component = component
             })
-            this.router.addRoutes(storeRouter)
+            _Vue.router.addRoutes(storeRouter)
         }
-        this.storage.set('addRouter', storeRouter)
+        _Vue.storage.set(STORE_NAME, storeRouter)
     },
     add (options) {
         let opts = Object.assign({}, {
@@ -32,16 +26,16 @@ const addRouter = {
             query: null,
             props: undefined
         }, options)
-        let component = _.cloneDeep(comps[opts.compName])
+        let component = _Vue._.cloneDeep(comps[opts.compName])
         component.name = opts.key ? (opts.compName + '-' + opts.key) : opts.compName
         let route = {
             ...opts,
             component
         }
-        this.router.addRoutes([
+        _Vue.router.addRoutes([
             route
         ])
-        this.router.push({
+        _Vue.router.push({
             path: route.path,
             query: route.query
         })
@@ -49,8 +43,8 @@ const addRouter = {
     }
 }
 
-addRouter.install = function (Vue, options) {
-    this.router = options.router
+addRouter.install = function (Vue) {
+    _Vue = Vue
     this.init()
 }
 

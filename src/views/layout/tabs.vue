@@ -4,20 +4,22 @@
             <span v-if="isShowTabBtn" @mousedown="scrollTabLeft" class="tab-btn tab-btn-left el-icon-arrow-left"></span>
             <div class="tabs-wrap flex" ref="tabWrap">
                 <ul ref="tabUi" :style="{'left': tabUiLeft + 'px'}">
-                    <li
-                        :class="item.name === currentTab ? 'active' : ''"
-                        v-for="item in tabList"
-                        :key="item.name"
-                        @click="clickTab(item)"
-                        @contextmenu.prevent="handleContextmenu(item, $event)"
-                        @mouseenter="mouseenterTab(item)">
-                        <span>{{ item.name }}</span>
-                        <i
-                            v-if="item.name !== 'Home'"
-                            class="el-icon-close"
-                            @click.stop="closeTab(item)">
-                        </i>
-                    </li>
+                    <draggable :value="tabList" draggable="li" @input="handleChange">
+                        <li
+                            :class="item.name === currentTab ? 'active' : ''"
+                            v-for="item in tabList"
+                            :key="item.name"
+                            @click="clickTab(item)"
+                            @contextmenu.prevent="handleContextmenu(item, $event)"
+                            @mouseenter="mouseenterTab(item)">
+                            <span>{{ item.name }}</span>
+                            <i
+                                v-if="item.name !== 'Home'"
+                                class="el-icon-close"
+                                @click.stop="closeTab(item)">
+                            </i>
+                        </li>
+                    </draggable>
                 </ul>
             </div>
             <span v-if="isShowTabBtn" @mousedown="scrollTabRight" class="tab-btn tab-btn-right el-icon-arrow-right"></span>
@@ -226,6 +228,10 @@ export default {
                     this.tabUiLeft = -(scrollWidth - boxWidth)
                 }
             }, 0)
+        },
+        handleChange (list) {
+            this.sync_tabList(list)
+            this.$storage.set('tabList', list)
         }
     }
 }

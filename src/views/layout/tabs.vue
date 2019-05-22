@@ -69,34 +69,33 @@ export default {
     },
 
     created () {
+        window.addEventListener('resize', () => {
+            if (this.$refs.tabWrap.scrollWidth <= this.$refs.tabUi.scrollWidth) {
+                this.isShowTabBtn = true
+            } else {
+                this.isShowTabBtn = false
+            }
+            this.scrollTabTo()
+        })
+    },
+
+    mounted () {
         this.$nextTick(() => {
             this.scrollTabTo()
             this.initStoreTab()
-            if (this.$refs.tabWrap.offsetWidth < this.$refs.tabUi.scrollWidth) {
-                this.isShowTabBtn = true
-            }
-            window.addEventListener('resize', () => {
+        })
+    },
+
+    watch: {
+        tabList () {
+            this.$nextTick(() => {
                 if (this.$refs.tabWrap.scrollWidth <= this.$refs.tabUi.scrollWidth) {
                     this.isShowTabBtn = true
                 } else {
                     this.isShowTabBtn = false
                 }
             })
-        })
-    },
-
-    watch: {
-        tabList: {
-            handler () {
-                this.$nextTick(() => {
-                    if (this.$refs.tabWrap.scrollWidth <= this.$refs.tabUi.scrollWidth) {
-                        this.isShowTabBtn = true
-                    } else {
-                        this.isShowTabBtn = false
-                    }
-                })
-            },
-            deep: true
+            this.scrollTabTo()
         }
     },
 
@@ -212,19 +211,19 @@ export default {
             }
         },
         scrollTabTo () {
-            if (!this.isShowTabBtn) return
             setTimeout(() => {
+                if (!this.isShowTabBtn) return
                 let currentEle = this.$refs.tabUi.querySelector('li.active')
                 if (!currentEle) return
                 let left = currentEle.offsetLeft
-                if (this.tabUiLeft <= 0 || this.$refs.tabWrap.offsetWidth > left) {
-                    this.tabUiLeft = -(left - this.$refs.tabWrap.offsetWidth / 2) + 15
-                    if (this.tabUiLeft > 0) {
-                        this.tabUiLeft = 0
-                    }
-                    if (this.$refs.tabWrap.offsetWidth <= left + 100) {
-                        this.tabUiLeft = -(this.$refs.tabUi.scrollWidth - this.$refs.tabWrap.offsetWidth)
-                    }
+                let scrollWidth = this.$refs.tabUi.scrollWidth
+                let boxWidth = this.$refs.tabWrap.offsetWidth
+                this.tabUiLeft = boxWidth / 2 - left - currentEle.offsetWidth / 2
+                if (this.tabUiLeft > 0) {
+                    this.tabUiLeft = 0
+                }
+                if (Math.abs(this.tabUiLeft) > scrollWidth - boxWidth) {
+                    this.tabUiLeft = -(scrollWidth - boxWidth)
                 }
             }, 0)
         }

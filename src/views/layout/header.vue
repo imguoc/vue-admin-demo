@@ -3,7 +3,7 @@
     <div class="logo flex-box flex-center">
         <span>Hello World</span>
     </div>
-    <el-menu class="flex-item" :default-active="activeIndex" mode="horizontal" @select="handleSelect">
+    <el-menu class="flex-item" :default-active="activeIndex" mode="horizontal">
         <template v-for="item in list">
             <el-menu-item v-if="!(item['child'] && item['child'].length)" :index="item.index" :key="item.index">
                 <!-- <router-link :to="item.name">{{ item.name }}</router-link> -->
@@ -176,9 +176,6 @@ export default {
             'sync_currentTab',
             'sync_tabList'
         ]),
-        handleSelect () {
-
-        },
         handleClick (item) {
             this.$addRouter.add({
                 path: item.path,
@@ -187,7 +184,7 @@ export default {
                 props: item
             })
             let storeTab = this.$storage.get('tabList') || []
-            if (!storeTab.find(v => v.path === item.path)) {
+            if (!storeTab.find(v => v.name === item.name)) {
                 storeTab.push({
                     title: item.name,
                     name: item.name,
@@ -197,6 +194,7 @@ export default {
                 this.$storage.set('tabList', this.tabList)
             }
             this.sync_currentTab(item.name)
+            this.$storage.set('currentTab', item.name)
         }
     }
 }

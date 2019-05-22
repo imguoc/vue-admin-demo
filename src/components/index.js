@@ -1,7 +1,9 @@
 import Demo from './demo'
+import draggable from 'vuedraggable'
 
 const components = [
-    Demo
+    Demo,
+    draggable
 ]
 
 export default function (Vue) {

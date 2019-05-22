@@ -79,6 +79,7 @@ export default {
         ]),
         handleClick (item) {
             this.sync_currentTab(item.name)
+            this.$storage.set('currentTab', item.name)
         },
         handleToggle () {
             localStorage.setItem('isOpenSide', !this.isOpenSide)
@@ -94,7 +95,7 @@ export default {
                     type: 'success',
                     message: '已退出登陆！'
                 })
-                localStorage.clear('TOKEN')
+                this.$storage.clear()
                 this.$router.push('/login')
             }).catch(() => {})
         }

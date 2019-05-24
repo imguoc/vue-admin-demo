@@ -207,11 +207,14 @@ ul, ol {
                     background: #2189dc
                 }
             }
-            .setting {
-                .el-dropdown-link {
+            .tool {
+                .el-button {
                     cursor: pointer;
-                    font-size: 14px;
+                    width: 30px;
+                    height: 30px;
+                    font-size: 20px;
                     color: #fff;
+                    padding: 0;
                 }
             }
         }
@@ -225,8 +228,15 @@ ul, ol {
                 left: 0;
                 width: 100%;
                 height: 100%;
-                padding: 20px;
                 background: #fff;
+                .layout-table {
+                    .el-table {
+                        width: 100%;
+                        th {
+                            background: #f7f7f7;
+                        }
+                    }
+                }
             }
         }
         .el-tabs {
@@ -278,6 +288,7 @@ ul, ol {
         .layout-tabs {
             position: relative;
             .tabs {
+                background: #fff;
                 .tab-btn {
                     cursor: pointer;
                     width: 15px;
@@ -286,7 +297,7 @@ ul, ol {
                     font-size: 16px;
                     line-height: 34px;
                     text-align: center;
-                    margin-top: 10px;
+                    margin: 3px 0;
                 }
                 .tab-btn:hover{
                     background: #d5d5d5;
@@ -294,13 +305,13 @@ ul, ol {
                 .tabs-wrap {
                     position: relative;
                     overflow: hidden;
-                    margin: 0 5px;
                     width: 100%;
-                    height: 44px;
+                    height: 40px;
+                    background: #fff;
                     ul {
                         position: relative;
                         display: inline-block;
-                        padding: 10px 0 0 0;
+                        padding: 6px 5px 0 5px;
                         margin: 0;
                         white-space: nowrap;
                         transition: 0.3s;
@@ -349,16 +360,16 @@ ul, ol {
                 border-radius: 4px;
                 white-space: nowrap;
                 ul {
-                    padding: 0;
+                    padding: 5px 0;
                     margin: 0;
+                    background: #f0f0f0;
                     li {
                         cursor: pointer;
-                        font-size: 13px;
+                        font-size: 14px;
                         color: #555;
-                        height: 28px;
-                        line-height: 28px;
-                        padding: 0 10px;
-                        background: #f0f0f0;
+                        height: 32px;
+                        line-height: 32px;
+                        padding: 0 12px;
                         i {
                             margin-right: 2px;
                         }

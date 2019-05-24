@@ -4,13 +4,14 @@
             <span v-if="isShowTabBtn" @mousedown="scrollTabLeft" class="tab-btn tab-btn-left el-icon-arrow-left"></span>
             <div class="tabs-wrap flex" ref="tabWrap">
                 <ul ref="tabUi" :style="{'left': tabUiLeft + 'px'}">
-                    <draggable :value="tabList" draggable="li" @input="handleChange">
+                    <draggable draggable="li" :value="tabList" @input="handleChange" animation="200">
                         <li
                             :class="item.name === currentTab ? 'active' : ''"
                             v-for="item in tabList"
                             :key="item.name"
                             @click="clickTab(item)"
                             @contextmenu.prevent="handleContextmenu(item, $event)"
+                            @dblclick="closeTab(item)"
                             @mouseenter="mouseenterTab(item)">
                             <span>{{ item.name }}</span>
                             <i
@@ -70,25 +71,33 @@ export default {
         }
     },
 
-    created () {
-        window.addEventListener('resize', () => {
-            if (this.$refs.tabWrap.scrollWidth <= this.$refs.tabUi.scrollWidth) {
-                this.isShowTabBtn = true
-            } else {
-                this.isShowTabBtn = false
-            }
-            this.scrollTabTo()
-        })
+    computed: {
+        ...mapState('tab', [
+            'currentTab',
+            'defaultList',
+            'tabList'
+        ])
     },
 
-    mounted () {
+    created () {
         this.$nextTick(() => {
             this.scrollTabTo()
             this.initStoreTab()
+            window.addEventListener('resize', () => {
+                if (this.$refs.tabWrap.scrollWidth <= this.$refs.tabUi.scrollWidth) {
+                    this.isShowTabBtn = true
+                } else {
+                    this.isShowTabBtn = false
+                }
+                this.scrollTabTo()
+            })
         })
     },
 
     watch: {
+        currentTab () {
+            this.scrollTabTo()
+        },
         tabList () {
             this.$nextTick(() => {
                 if (this.$refs.tabWrap.scrollWidth <= this.$refs.tabUi.scrollWidth) {
@@ -99,14 +108,6 @@ export default {
             })
             this.scrollTabTo()
         }
-    },
-
-    computed: {
-        ...mapState('tab', [
-            'currentTab',
-            'defaultList',
-            'tabList'
-        ])
     },
 
     methods: {
@@ -121,6 +122,12 @@ export default {
             this.$storage.set('currentTab', this.currentTab)
             this.sync_tabList(tabs)
             this.$storage.set('tabList', tabs)
+            let item = tabs.find(v => v.path === this.$route.path)
+            if (!item) {
+                this.$router.push('/')
+                this.sync_currentTab('Home')
+                this.$storage.set('currentTab', 'Home')
+            }
         },
         clickTab (item) {
             this.$router.push(item.path)
@@ -156,12 +163,8 @@ export default {
         handleContextmenu (item, event) {
             this.showContextmenu()
             setTimeout(() => {
-                if (window.innerWidth - 50 - event.layerX - 5 < this.$refs.contextmenu.offsetWidth) {
-                    this.contextmenuLeft = event.layerX - 70
-                } else {
-                    this.contextmenuLeft = event.layerX + 5
-                }
-                this.contextmenuTop = event.layerY + 5
+                this.contextmenuLeft = Math.abs(event.target.offsetLeft - Math.abs(this.tabUiLeft))
+                this.contextmenuTop = event.pageY - 60
                 this.currentItem = item
             }, 0)
         },
@@ -173,6 +176,8 @@ export default {
             this.sync_tabList(this.defaultList)
             this.$storage.set('tabList', this.defaultList)
             this.$router.push('/')
+            this.sync_currentTab('Home')
+            this.$storage.set('currentTab', 'Home')
             this.hideContextmenu()
         },
         closeLeft () {
@@ -214,6 +219,7 @@ export default {
         },
         scrollTabTo () {
             setTimeout(() => {
+                this.tabUiLeft = 0
                 if (!this.isShowTabBtn) return
                 let currentEle = this.$refs.tabUi.querySelector('li.active')
                 if (!currentEle) return

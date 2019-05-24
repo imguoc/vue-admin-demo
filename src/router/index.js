@@ -3,16 +3,21 @@ import Router from 'vue-router'
 import Home from './home'
 import Test from './test'
 import Login from './login'
+import Demo from './demo'
 import Error404 from './404'
 
 Vue.use(Router)
+
+// console.log(Demo)
 
 const router = new Router({
     routes: [
         ...Home,
         ...Test,
         ...Login,
-        ...Error404
+        ...Demo,
+
+        ...Error404 // 放在最后
     ]
 })
 

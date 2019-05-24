@@ -1,6 +1,5 @@
 const defaultTabs = [
     {
-        title: 'Home',
         name: 'Home',
         path: '/'
     }

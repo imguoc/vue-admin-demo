@@ -1,48 +1,62 @@
 <template>
-    <div class="layout-table flex-item">
-        <el-table
-            ref="table"
-            height="100%"
-            :stripe="true"
-            :border="true"
-            size="medium"
-            :data="tableList"
-            @selection-change="handleSelectionChange"
-            @row-click="handleRowClick">
-            <el-table-column
-                type="index"
-                width="50"
-                align="center"
-                fixed="left">
-            </el-table-column>
-            <el-table-column
-                type="selection"
-                width="50"
-                align="center"
-                fixed="left">
-            </el-table-column>
-            <el-table-column
-                prop="id"
-                label="ID"
-                width="120">
-                <template slot-scope="scope">
-                    <a href="" @click.prevent.stop="handleClick(scope.row)">{{ scope.row.id }}</a>
-                    <!-- <router-link :to="$route.path + '/' + scope.row.id">{{ scope.row.id }}</router-link> -->
-                </template>
-            </el-table-column>
-            <el-table-column
-                prop="name"
-                label="姓名">
-            </el-table-column>
-            <el-table-column
-                prop="tel"
-                label="电话">
-            </el-table-column>
-            <el-table-column
-                prop="address"
-                label="地址">
-            </el-table-column>
-        </el-table>
+    <div class="layout-table flex-box flex-item flex-column">
+        <div class="table-top-button">
+            <el-button>按钮</el-button>
+            <el-button>按钮</el-button>
+            <el-button>按钮</el-button>
+            <el-button>按钮</el-button>
+        </div>
+        <div class="table-main flex-item">
+            <el-table
+                ref="table"
+                :stripe="true"
+                :border="true"
+                size="medium"
+                :data="tableList"
+                @selection-change="handleSelectionChange"
+                @row-click="handleRowClick">
+                <el-table-column
+                    type="index"
+                    width="50"
+                    align="center"
+                    fixed="left">
+                </el-table-column>
+                <el-table-column
+                    type="selection"
+                    width="50"
+                    align="center"
+                    fixed="left">
+                </el-table-column>
+                <el-table-column
+                    prop="id"
+                    label="ID"
+                    width="120">
+                    <template slot-scope="scope">
+                        <a href="" @click.prevent.stop="handleClick(scope.row)">{{ scope.row.id }}</a>
+                        <!-- <router-link :to="$route.path + '/' + scope.row.id">{{ scope.row.id }}</router-link> -->
+                    </template>
+                </el-table-column>
+                <el-table-column
+                    prop="name"
+                    label="姓名">
+                </el-table-column>
+                <el-table-column
+                    prop="tel"
+                    label="电话">
+                </el-table-column>
+                <el-table-column
+                    prop="address"
+                    label="地址">
+                </el-table-column>
+            </el-table>
+        </div>
+        <div class="table-pagination">
+            <el-pagination
+                background
+                layout="prev, pager, next"
+                :total="100">
+            </el-pagination>
+        </div>
     </div>
 </template>
 
@@ -109,8 +123,12 @@ export default {
             console.log(arguments)
         },
         handleClick (item) {
-            // console.log(item)
-            // debugger
+            this.$addRouter.add({
+                path: '/demo/list/' + item.id,
+                key: item.id,
+                compName: 'ListEditor',
+                props: item
+            })
             let storeTab = this.$storage.get('tabList') || []
             let currentTab = this.$storage.get('currentTab')
             let currentItem = storeTab.find(v => v.name === currentTab)
@@ -118,15 +136,13 @@ export default {
             if (!storeTab.find(v => v.name === ('list-' + item.id))) {
                 storeTab.splice(currentIndex + 1, 0, {
                     name: 'list-' + item.id,
-                    path: this.$route.path + '/' + item.id
+                    path: '/demo/list/' + item.id
                 })
-                console.log('storeTab=>', this.tabList)
                 this.sync_tabList(storeTab)
                 this.$storage.set('tabList', this.tabList)
             }
             this.sync_currentTab('list-' + item.id)
             this.$storage.set('currentTab', 'list-' + item.id)
-            this.$router.push(this.$route.path + '/' + item.id)
         }
     }
 }

@@ -230,11 +230,28 @@ ul, ol {
                 height: 100%;
                 background: #fff;
                 .layout-table {
-                    .el-table {
-                        width: 100%;
-                        th {
-                            background: #f7f7f7;
+                    .table-top-button {
+                        text-align: right;
+                        padding-bottom: 10px;
+                        background: #d5d5d5;
+                        button {
+                            width: 60px;
+                            height: 30px;
+                            padding: 0;
                         }
+                    }
+                    .table-main {
+                        .el-table {
+                            width: 100%;
+                            th {
+                                background: #f7f7f7;
+                            }
+                        }
+                    }
+                    .table-pagination {
+                        text-align: center;
+                        background: #d5d5d5;
+                        padding: 10px 0 0 0 ;
                     }
                 }
             }

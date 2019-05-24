@@ -192,7 +192,7 @@ export default {
                 this.$addRouter.add({
                     path: item.path,
                     key: item.index,
-                    compName: 'custom',
+                    compName: 'Custom',
                     props: item
                 })
             } else {

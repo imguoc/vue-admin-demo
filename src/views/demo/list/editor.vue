@@ -1,20 +1,17 @@
 <template>
     <div>
-        demo editor
-        <input type="text" name="" id="" v-model="msg">
+        demo editor {{ $attrs.id }}
     </div>
 </template>
 
 <script>
 export default {
-    name: 'List-Editor',
+    name: 'ListEditor',
 
     components: {
     },
 
     created () {
-        console.log()
-        this.$options.name = '0001'
     },
 
     data () {

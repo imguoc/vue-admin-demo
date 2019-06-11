@@ -184,10 +184,20 @@ export default {
 
     methods: {
         ...mapMutations('tab', [
-            'sync_currentTab',
             'sync_tabList'
         ]),
         handleClick (item) {
+            let storeTab = this.$storage.get('tabList') || []
+            let currentItem = storeTab.find(v => v.path === this.$route.path)
+            let currentIndex = storeTab.indexOf(currentItem)
+            if (!storeTab.find(v => v.path === item.path)) {
+                storeTab.splice(currentIndex + 1, 0, {
+                    name: item.name,
+                    path: item.path
+                })
+                this.sync_tabList(storeTab)
+                this.$storage.set('tabList', this.tabList)
+            }
             if (item.isCustom) {
                 this.$addRouter.add({
                     path: item.path,
@@ -198,20 +208,6 @@ export default {
             } else {
                 this.$router.push(item.path)
             }
-            let storeTab = this.$storage.get('tabList') || []
-            let currentTab = this.$storage.get('currentTab')
-            let currentItem = storeTab.find(v => v.name === currentTab)
-            let currentIndex = storeTab.indexOf(currentItem)
-            if (!storeTab.find(v => v.name === item.name)) {
-                storeTab.splice(currentIndex + 1, 0, {
-                    name: item.name,
-                    path: item.path
-                })
-                this.sync_tabList(storeTab)
-                this.$storage.set('tabList', this.tabList)
-            }
-            this.sync_currentTab(item.name)
-            this.$storage.set('currentTab', item.name)
         },
         handleFullSreen () {
             this.fullScreenSwitch()
@@ -220,10 +216,8 @@ export default {
         fullScreenSwitch (elDiv) {
             if (!this.isFullScreen) {
                 this.fullScreenOpen(elDiv)
-                // .text('退出')
             } else {
                 this.fullScreenExit()
-                // $('#btn').text('全屏')
             }
         },
         // 全屏打开

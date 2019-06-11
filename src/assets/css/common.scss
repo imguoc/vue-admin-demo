@@ -136,7 +136,7 @@ ul, ol {
                 }
             }
             a.exit:hover {
-                color: #FF5722;
+                color: #f81100;
                 i {
                     font-weight: bold;
                 }
@@ -146,6 +146,7 @@ ul, ol {
     .layout-main {
         position: relative;
         overflow: hidden;
+        background: #e4e8eb;
         .layout-header {
             background: #2196F3;
             padding: 0 20px;
@@ -220,86 +221,36 @@ ul, ol {
         }
         .layout-view {
             overflow: hidden;
-            background: #fff;
-            border: 10px solid #d5d5d5;
-            .layout-view-main {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
+            background: #e4e8eb;
+            .layout-box {
+                margin: 10px;
                 background: #fff;
-                .layout-table {
-                    .table-top-button {
-                        text-align: right;
-                        padding-bottom: 10px;
-                        background: #d5d5d5;
-                        button {
-                            width: 60px;
-                            height: 30px;
-                            padding: 0;
+                overflow: hidden;
+            }
+            .layout-table {
+                height: 100%;
+                background: #e4e8eb;
+                .table-top-button {
+                    text-align: right;
+                    margin-bottom: 10px;
+                    button {
+                        width: 60px;
+                        height: 30px;
+                        padding: 0;
+                    }
+                }
+                .table-main {
+                    overflow: hidden;
+                    .el-table {
+                        th {
+                            background: #f7f7f7;
                         }
                     }
-                    .table-main {
-                        .el-table {
-                            width: 100%;
-                            th {
-                                background: #f7f7f7;
-                            }
-                        }
-                    }
-                    .table-pagination {
-                        text-align: center;
-                        background: #d5d5d5;
-                        padding: 10px 0 0 0 ;
-                    }
                 }
-            }
-        }
-        .el-tabs {
-            padding: 10px 0 0 0;
-            .el-tabs__header {
-                margin: 0px;
-                .el-tabs__nav-wrap {
-                    margin-bottom: 0;
-                    .el-tabs__active-bar {
-                        display: none;
-                    }
+                .table-pagination {
+                    text-align: center;
+                    margin-top: 10px;
                 }
-                .el-tabs__nav-wrap {
-                    .el-tabs__nav-next,
-                    .el-tabs__nav-prev {
-                        color: #555;
-                        background: #f0f0f0;
-                        line-height: 34px;
-                    }
-                }
-                .el-tabs__nav-wrap:after {
-                    display: none;
-                }
-                .el-tabs__item {
-                    color: #555;
-                    margin: 0 5px;
-                    height: 34px;
-                    line-height: 34px;
-                    padding: 0 15px;
-                    background: #f0f0f0;
-                    border-top-left-radius: 4px;
-                    border-top-right-radius: 4px;
-                    .el-icon-close {
-                        margin-right: -5px;
-                    }
-                }
-                .el-tabs__item:hover {
-                    background: #e1e1e1;
-                }
-                .el-tabs__item.is-active {
-                    background: #d5d5d5;
-                    color: #222;
-                }
-            }
-            .el-tabs__content {
-                display: none;
             }
         }
         .layout-tabs {
@@ -317,7 +268,7 @@ ul, ol {
                     margin: 3px 0;
                 }
                 .tab-btn:hover{
-                    background: #d5d5d5;
+                    background: #e4e8eb;
                 }
                 .tabs-wrap {
                     position: relative;
@@ -342,7 +293,7 @@ ul, ol {
                             height: 34px;
                             line-height: 34px;
                             padding: 0 15px;
-                            background: #f0f0f0;
+                            background: #cbd0d7;
                             border-top-left-radius: 4px;
                             border-top-right-radius: 4px;
                             white-space: nowrap;
@@ -358,11 +309,11 @@ ul, ol {
                             }
                         }
                         li.active {
-                            background: #d5d5d5;
+                            background: #e4e8eb;
                             color: #222;
                         }
                         li:hover {
-                            background: #d5d5d5;
+                            background: #e4e8eb;
                             color: #222;
                         }
                     }

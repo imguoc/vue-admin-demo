@@ -6,7 +6,6 @@ const defaultTabs = [
 ]
 
 const state = {
-    currentTab: 'Home',
     defaultList: defaultTabs,
     tabList: []
 }
@@ -14,9 +13,6 @@ const state = {
 const mutations = {
     sync_tabList (state, payload) {
         state.tabList = payload
-    },
-    sync_currentTab (state, payload) {
-        state.currentTab = payload
     }
 }
 

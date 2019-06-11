@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="layout-box flex-item">
         welcome!
     </div>
 </template>

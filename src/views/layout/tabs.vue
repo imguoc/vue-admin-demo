@@ -1,12 +1,20 @@
 <template>
     <div class="layout-tabs">
         <div class="tabs flex-box">
-            <span v-if="isShowTabBtn" @mousedown="scrollTabLeft" class="tab-btn tab-btn-left el-icon-arrow-left"></span>
+            <span
+                v-if="isShowTabBtn"
+                class="tab-btn tab-btn-left el-icon-arrow-left"
+                @mousedown="scrollTabLeft">
+            </span>
             <div class="tabs-wrap flex" ref="tabWrap">
                 <ul ref="tabUi" :style="{'left': tabUiLeft + 'px'}">
-                    <draggable draggable="li" :value="tabList" @input="handleChange" animation="200">
+                    <draggable
+                        :value="tabList"
+                        @input="handleChange"
+                        draggable="li"
+                        animation="200">
                         <li
-                            :class="item.name === currentTab ? 'active' : ''"
+                            :class="item.path === $route.path ? 'active' : ''"
                             v-for="item in tabList"
                             :key="item.name"
                             @click="clickTab(item)"
@@ -23,7 +31,11 @@
                     </draggable>
                 </ul>
             </div>
-            <span v-if="isShowTabBtn" @mousedown="scrollTabRight" class="tab-btn tab-btn-right el-icon-arrow-right"></span>
+            <span
+                v-if="isShowTabBtn"
+                class="tab-btn tab-btn-right el-icon-arrow-right"
+                @mousedown="scrollTabRight">
+            </span>
         </div>
         <div
             ref="contextmenu"
@@ -67,13 +79,14 @@ export default {
             contextmenuLeft: 0,
             contextmenuTop: 0,
             currentItem: null,
-            tabUiLeft: 0
+            tabUiLeft: 0,
+            currentTab: null
         }
     },
 
     computed: {
         ...mapState('tab', [
-            'currentTab',
+            // 'currentTab',
             'defaultList',
             'tabList'
         ])
@@ -112,27 +125,17 @@ export default {
 
     methods: {
         ...mapMutations('tab', [
-            'sync_currentTab',
             'sync_tabList'
         ]),
         initStoreTab () {
             let tabs = this.$storage.get('tabList') || this.defaultList
-            let currentTab = this.$storage.get('currentTab') || this.currentTab
-            this.sync_currentTab(currentTab)
-            this.$storage.set('currentTab', this.currentTab)
             this.sync_tabList(tabs)
             this.$storage.set('tabList', tabs)
             let item = tabs.find(v => v.path === this.$route.path)
-            if (!item) {
-                this.$router.push('/')
-                this.sync_currentTab('Home')
-                this.$storage.set('currentTab', 'Home')
-            }
+            if (!item) this.$router.push('/')
         },
         clickTab (item) {
             this.$router.push(item.path)
-            this.sync_currentTab(item.name)
-            this.$storage.set('currentTab', item.name)
             this.scrollTabTo()
         },
         closeTab (item) {
@@ -144,8 +147,6 @@ export default {
             this.$storage.set('tabList', this.tabList)
             if (item.name === this.currentTab) {
                 let prveItem = this.tabList[currentIndex - 1]
-                this.sync_currentTab(prveItem.name)
-                this.$storage.set('currentTab', prveItem.name)
                 this.$router.push(prveItem.path)
             }
         },
@@ -176,8 +177,6 @@ export default {
             this.sync_tabList(this.defaultList)
             this.$storage.set('tabList', this.defaultList)
             this.$router.push('/')
-            this.sync_currentTab('Home')
-            this.$storage.set('currentTab', 'Home')
             this.hideContextmenu()
         },
         closeLeft () {

@@ -7,7 +7,7 @@ const addRouter = {
     init (route = null) {
         let storeRouter = _Vue.storage.get(STORE_NAME) || []
         if (route) {
-            if (!storeRouter.find(comp => comp.path === route.path)) storeRouter.push(route)
+            if (!storeRouter.find(comp => comp.name === route.name)) storeRouter.push(route)
         } else {
             storeRouter.map(rt => {
                 let component = _Vue._.cloneDeep(comps[rt.compName])
@@ -30,11 +30,15 @@ const addRouter = {
         component.name = opts.key ? (opts.compName + '-' + opts.key) : opts.compName
         let route = {
             ...opts,
+            name: opts.key ? (opts.compName + '-' + opts.key) : opts.compName,
             component
         }
-        _Vue.router.addRoutes([
-            route
-        ])
+        let storeRouter = _Vue.storage.get(STORE_NAME) || []
+        if (!storeRouter.find(comp => comp.name === route.name)) {
+            _Vue.router.addRoutes([
+                route
+            ])
+        }
         _Vue.router.push({
             path: route.path,
             query: route.query

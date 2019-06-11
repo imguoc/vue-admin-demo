@@ -6,13 +6,15 @@
             <el-button>按钮</el-button>
             <el-button>按钮</el-button>
         </div>
-        <div class="table-main flex-item">
+        <div class="table-main">
             <el-table
+                style="width: 100%;"
                 ref="table"
                 :stripe="true"
                 :border="true"
+                :data="listData"
+                height="100%"
                 size="medium"
-                :data="tableList"
                 @selection-change="handleSelectionChange"
                 @row-click="handleRowClick">
                 <el-table-column
@@ -33,7 +35,6 @@
                     width="120">
                     <template slot-scope="scope">
                         <a href="" @click.prevent.stop="handleClick(scope.row)">{{ scope.row.id }}</a>
-                        <!-- <router-link :to="$route.path + '/' + scope.row.id">{{ scope.row.id }}</router-link> -->
                     </template>
                 </el-table-column>
                 <el-table-column
@@ -66,6 +67,12 @@ import { mapState, mapMutations } from 'vuex'
 export default {
     name: 'List',
 
+    props: {
+        listData: {
+            type: Array
+        }
+    },
+
     computed: {
         ...mapState('tab', [
             'tabList'
@@ -74,45 +81,12 @@ export default {
 
     data () {
         return {
-            multipleSelection: [],
-            tableList: [
-                {
-                    id: '001',
-                    name: 'item1',
-                    tel: '13000000001',
-                    address: '银河系地球村001街'
-                },
-                {
-                    id: '002',
-                    name: 'item2',
-                    tel: '13000000002',
-                    address: '银河系地球村001街'
-                },
-                {
-                    id: '003',
-                    name: 'item3',
-                    tel: '13000000003',
-                    address: '银河系地球村003街'
-                },
-                {
-                    id: '004',
-                    name: 'item4',
-                    tel: '13000000004',
-                    address: '银河系地球村004街'
-                },
-                {
-                    id: '005',
-                    name: 'item5',
-                    tel: '13000000005',
-                    address: '银河系地球村005街'
-                }
-            ]
+            multipleSelection: []
         }
     },
 
     methods: {
         ...mapMutations('tab', [
-            'sync_currentTab',
             'sync_tabList'
         ]),
         handleSelectionChange (val) {
@@ -120,7 +94,6 @@ export default {
         },
         handleRowClick (row, column, event) {
             this.$refs.table.toggleRowSelection(row)
-            console.log(arguments)
         },
         handleClick (item) {
             this.$addRouter.add({
@@ -141,8 +114,6 @@ export default {
                 this.sync_tabList(storeTab)
                 this.$storage.set('tabList', this.tabList)
             }
-            this.sync_currentTab('list-' + item.id)
-            this.$storage.set('currentTab', 'list-' + item.id)
         }
     }
 }

@@ -1,22 +1,16 @@
 <template>
-    <div class="layout-box flex-item">
-        demo editor {{ $attrs.id }}
+    <div>
+        hello
     </div>
 </template>
 
 <script>
 export default {
-    name: 'ListEditor',
-
-    components: {
-    },
-
-    created () {
-    },
+    name: '',
 
     data () {
         return {
-            msg: ''
+
         }
     }
 }

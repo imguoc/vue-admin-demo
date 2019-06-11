@@ -1,10 +1,14 @@
 <template>
     <div class="flex-box flex-column" :style="{'width': (isOpenSide ? 200 : 50) + 'px'}">
         <div class="favicon flex-box flex-column flex-center">
-            <div class="img" :style="{'width': (isOpenSide ? 60 : 34) + 'px', 'height': (isOpenSide ? 60 : 34) + 'px'}">
+            <div
+                class="img"
+                :style="{'width': (isOpenSide ? 60 : 34) + 'px', 'height': (isOpenSide ? 60 : 34) + 'px'}">
                 <img src="@/assets/favicon.png" alt="">
             </div>
-            <div v-if="isOpenSide" class="name animated fadeIn">
+            <div
+                v-if="isOpenSide"
+                class="name animated fadeIn">
                 ADMIN
             </div>
         </div>
@@ -74,12 +78,7 @@ export default {
         ...mapMutations('layout', [
             'sync_isOpenSide'
         ]),
-        ...mapMutations('tab', [
-            'sync_currentTab'
-        ]),
         handleClick (item) {
-            this.sync_currentTab(item.name)
-            this.$storage.set('currentTab', item.name)
         },
         handleToggle () {
             localStorage.setItem('isOpenSide', !this.isOpenSide)
